@@ -6,6 +6,7 @@ const usersRouter = require('./routes/users')
 const postsRouter = require('./routes/posts')
 const commentsRouter = require('./routes/comments')
 
+app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
 // Logging Middlewaare
@@ -31,6 +32,12 @@ app.use((req, res, next) => {
   //app.use(middle)
 
 
+
+
+app.get('/index', (req, res) => {
+res.render('index')
+})
+
 app.use('/api/users', usersRouter)
 app.use('/api/posts', postsRouter)
 app.use('/api/comments', commentsRouter)
@@ -43,7 +50,7 @@ app.get('/', (req, res) => {
 app.get('/user/:firstName', (req, res) => {
   console.log('Params:', req.params)
   console.log('Queries:', req.query )
-  res.send(`my name is {req.params.firstName} ${req.query.lastName}`);
+  res.send(`my name is ${req.params.firstName} ${req.query.lastName}`);
 })
 
 app.get('/api', (req, res) => {
@@ -86,5 +93,5 @@ app.use((err, req, res, next) => {
 
 
 app.listen(PORT, () => {
-    console.log('Server is listening on PORT:${PORT}')
+    console.log(`Server is listening on PORT:${PORT}`)
 })
