@@ -23,12 +23,27 @@ app.use((req, res, next) => {
     next();
   });
 
+  app.use((req, res, next) => {
+    console.log(`Middleware executed`)
+    next();
+  });
+  
+  //app.use(middle)
+
+
 app.use('/api/users', usersRouter)
 app.use('/api/posts', postsRouter)
 app.use('/api/comments', commentsRouter)
 
+
 app.get('/', (req, res) => {
     res.send('Welcome to the API!')
+})
+
+app.get('/user/:firstName', (req, res) => {
+  console.log('Params:', req.params)
+  console.log('Queries:', req.query )
+  res.send(`my name is {req.params.firstName} ${req.query.lastName}`);
 })
 
 app.get('/api', (req, res) => {
@@ -63,6 +78,12 @@ app.get('/api', (req, res) => {
 
   )
 })
+
+app.use((err, req, res, next) => {
+  res.status(400).send(err.message);
+  //next();
+})
+
 
 app.listen(PORT, () => {
     console.log('Server is listening on PORT:${PORT}')
