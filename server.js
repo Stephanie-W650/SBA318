@@ -4,6 +4,7 @@ const PORT = 3000;
 
 const usersRouter = require('./routes/users')
 const postsRouter = require('./routes/posts')
+const commentsRouter = require('./routes/comments')
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 
 app.use('/api/users', usersRouter)
 app.use('/api/posts', postsRouter)
+app.use('/api/comments', commentsRouter)
 
 app.get('/', (req, res) => {
     res.send('Welcome to the API!')
@@ -46,6 +48,14 @@ app.get('/api', (req, res) => {
       },
       {
         href: '/api/posts/:id',
+        type: ['GET', 'PATCH', 'DELETE']
+      },
+      {
+        href: '/api/comments',
+        type: ['GET', 'POST']
+      },
+      {
+        href: '/api/comments/:id',
         type: ['GET', 'PATCH', 'DELETE']
       },
     ]
