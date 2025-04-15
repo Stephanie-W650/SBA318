@@ -91,6 +91,7 @@ app.use((err, req, res, next) => {
   //next();
 })
 
+app.use(express.static('public'));
 
 app.listen(PORT, () => {
     console.log(`Server is listening on PORT:${PORT}`)

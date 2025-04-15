@@ -1,0 +1,38 @@
+body {
+    background-color: antiquewhite;
+    padding: 20px;
+}
+
+/* h1 {
+    color:aqua
+} */
+
+form {
+    /* background-color: pink; */
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px;
+    width: 500px;
+    /* border: 2px black solid; */
+
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 300px;
+padding: 8px;
+margin-bottom: 25px;
+}
+
+#name,
+#email {
+    margin-left: 25px;
+   
+}
+
+button[type="submit"] {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: aqua;
+}
