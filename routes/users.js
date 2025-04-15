@@ -14,7 +14,28 @@ const users = require('../data/users')
 
 router.route('/')
 .get ((req, res) => {
-    res.json(users);
+    let result = [...users]
+    if(req.query.name) {
+        //let result = users;
+        //let result = [...users]
+        //users = users.filter(user => 
+            result = result.filter(user => 
+            user.name.toLowerCase().includes(req.query.name.toLowerCase())
+        )
+    }
+    if(req.query.username) {
+        //users = users.filter(user => 
+            result = result.filter(user =>
+            user.username.toLowerCase().includes(req.query.username.toLowerCase())
+        )
+    }
+
+    if(req.query.email) {
+        //users = users.filter(user => 
+            result = result.filter(user =>
+            user.email.toLowerCase().includes(req.query.email.toLowerCase())
+        )}
+    res.json(result);
 })
 .post((req, res) => {
     console.log(req.body);
